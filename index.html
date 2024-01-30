@@ -15,6 +15,7 @@
     // План
     // 1. Реализовать форму логина в приложении
     //  * Перенести всю разметку в рендер функцию
+    // * сделать динамической форму входа
     // 2. Реализовать форму регистрации
 
     // TODO: Получать из хранилища данных
@@ -22,7 +23,8 @@
 
     // let login = prompt("Логин");
 
-    let token = "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
+    let token = null;
+    // "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k"
 
     const host = "https://webdev-hw-api.vercel.app/api/v2/todos";
 
@@ -49,7 +51,34 @@
     };
 
     const renderApp = () => {
-      const appEl = document.getElementById("app");
+        const appEl = document.getElementById("app");
+        if(!token) {
+            const appHtml = `
+                <h1>Список задач</h1>
+                <div class="form">
+                <h3 class="form-title">Форма входа</h3>
+                <div class="form-row">
+                    Логин
+                    <input type="text" id="login-input" class="input" />
+                    <br />
+                    Пароль
+                    <input type="text" id="login-input" class="input" />
+                </div>
+                <br />
+                <button class="button" id="login-button">Войти</button>
+                </div>`;
+
+      appEl.innerHTML = appHtml;
+
+        document.getElementById("login-button").addEventListener('click', () => {
+        token = "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
+       fetchTodosAndRender();
+        })
+
+      return;
+        }
+
+
       const tasksHtml = tasks
         .map((task) => {
           return `
@@ -63,20 +92,6 @@
         .join("");
 
       const appHtml = `
-                <h1>Список задач</h1>
-                <div class="form">
-                <h3 class="form-title">Форма входа</h3>
-                <div class="form-row">
-                    Логин
-                    <input type="text" id="login-input" class="input" />
-                    <br />
-                    Пароль
-                    <input type="text" id="login-input" class="input" />
-                </div>
-                <br />
-                <button class="button" id="login-button">Войти</button>
-                </div>
-
                 <ul class="tasks" id="list">
                 <!-- Список рендерится из JS -->
                 ${tasksHtml}
@@ -170,7 +185,8 @@
       });
     };
 
-    fetchTodosAndRender();
+    // fetchTodosAndRender();
+    renderApp();
   </script>
 </html>
 
