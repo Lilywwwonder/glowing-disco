@@ -44,11 +44,11 @@
         })
         .then((responseData) => {
           tasks = responseData.todos;
-          renderTasks();
+          renderApp();
         });
     };
 
-    const renderTasks = () => {
+    const renderApp = () => {
       const appEl = document.getElementById("app");
       const tasksHtml = tasks
         .map((task) => {
@@ -173,3 +173,4 @@
     fetchTodosAndRender();
   </script>
 </html>
+
