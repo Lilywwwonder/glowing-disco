@@ -2,21 +2,21 @@
     // 1. Реализовать форму логина в приложении
     //  * Перенести всю разметку в рендер функцию +
     // * сделать динамической форму входа +
-    // * отрефакторить приложение на модули
+    // * отрефакторить приложение на модули 
+    // * api +
+    // .... to do
     // 2. Реализовать форму регистрации
 
 import { deleteTodo, getTodos } from "./api.js";
 
-    // TODO: Получать из хранилища данных
+
     let tasks = [];
 
-    // let login = prompt("Логин");
 
     let token = null;
     // "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k"
 
-    const host = "https://webdev-hw-api.vercel.app/api/v2/todos";
-
+    
     const fetchTodosAndRender = () => {
       return getTodos({ token })
         .then((responseData) => {
@@ -141,5 +141,4 @@ addTodo({ token, text: textInputElement.value })
       });
     };
 
-    // fetchTodosAndRender();
     renderApp();
