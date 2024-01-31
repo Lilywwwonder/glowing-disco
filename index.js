@@ -48,7 +48,7 @@ import { renderLoginComponent } from "./components/login-component.js";
           return `
           <li class="task">
             <p class="task-text">
-              ${task.text}
+              ${task.text} (Создал: ${task.user?.name ?? 'неизвестно' })
               <button data-id="${task.id}" class="button delete-button">Удалить</button>
             </p>
           </li>`;
