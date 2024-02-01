@@ -15,7 +15,7 @@ export function getTodos({ token }) {
           }
 
           return response.json();
-        })
+        });
 }
 
 export function deleteTodo({ token, id }) {
@@ -27,7 +27,7 @@ export function deleteTodo({ token, id }) {
       })
         .then((response) => {
           return response.json();
-        })
+        });
 }
 
 export function addTodo({ text, token }) {
@@ -42,11 +42,11 @@ export function addTodo({ text, token }) {
       })
         .then((response) => {
           return response.json();
-        })
+        });
 }
 
 // https://github.com/GlebkaF/webdev-hw-api/blob/main/pages/api/user/README.md
-export function login({ login, password }) {
+export function loginUser({ login, password }) {
     return fetch("https://webdev-hw-api.vercel.app/api/user/login", {
         method: "POST",
         body: JSON.stringify({
@@ -55,6 +55,10 @@ export function login({ login, password }) {
         }),
       })
         .then((response) => {
+          if (response.status === 400) {
+            throw new Error("Неверный логин или пароль");
+          }
           return response.json();
-        })
+        });
 }
+
